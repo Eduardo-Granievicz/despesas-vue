@@ -1,0 +1,6 @@
+body {
+     /* Atualize para o caminho correto da sua imagem */
+    background-size: cover; /* Faz com que a imagem de fundo cubra toda a área disponível */
+    background-position: center; /* Centraliza a imagem de fundo */
+    background-repeat: no-repeat; /* Evita que a imagem de fundo se repita */
+  }
