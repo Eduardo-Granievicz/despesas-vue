@@ -1,6 +1,7 @@
 import CadastroView from '@/views/CadastroView.vue'
 import VisualizarView from '@/views/VisualizarView.vue'
 import IndexView from '@/views/IndexView.vue'
+import CadastroCartaoView from '@/views/CadastroCartaoView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 
@@ -21,6 +22,11 @@ const router = createRouter({
       path: '/visualizar',
       name: 'Visualizar',
       component: VisualizarView
+    },
+    {
+      path: '/cadastrar-cartao',
+      name: 'Cartao',
+      component: CadastroCartaoView
     }
   ]
 })
