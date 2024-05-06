@@ -1,26 +1,32 @@
-import { ref, computed } from 'vue'
-import { defineStore } from 'pinia'
+import { ref, computed } from 'vue';
+import { defineStore } from 'pinia';
 
 export const useCounterStore = defineStore('counter', () => {
+  const state = {
+    despesas: ref([]),
+    cartoes: ref([])
+  };
 
+  const actions = {
+    adicionarDespesa(novaDespesa) {
+      state.despesas.value.push(novaDespesa);
+    },
+    excluiDespesa() {
+      state.despesas.value.pop();
+    },
+    cadastrarCartao(novoCartao) {
+      state.cartoes.value.push(novoCartao)
+    }
+  };
 
-  const despesas = ref([]);
+  const getters = {
+    totalDespesas: computed(() => {
+      return state.despesas.value.reduce((total, despesa) => total + despesa.valor, 0);
+    }),
+    quantidadeDespesas: computed(() => {
+      return state.despesas.value.length;
+    })
+  };
 
-  function adicionarDespesa(novaDespesa) {
-    despesas.value.push(novaDespesa);
-  }
-
-  const totalDespesas = computed(() => {
-    return despesas.value.reduce((total, despesa) => total + despesa.valor, 0);
-  });
-
-  const quantidadeDespesas = computed(() => {
-    return despesas.value.length;
-  });
-
-  function excluiDespesa () {
-    despesas.value.pop()
-  }
-
-  return { despesas, adicionarDespesa, excluiDespesa, totalDespesas, quantidadeDespesas }
-})
+  return { ...state, ...actions, ...getters };
+});
