@@ -15,6 +15,7 @@
             <tr>
               <th>Nome da despesa</th>
               <th>Categoria</th>
+              <th>Banco</th>
               <th>Valor da despesa</th>
               <th>Data de pagamento</th>
             </tr>
@@ -23,6 +24,7 @@
             <tr v-for="despesa in counterStore.despesas" :key="despesa.id">
               <td>{{ despesa.nome }}</td>
               <td>{{ despesa.categoria }}</td>
+              <td>{{ despesa.banco }}</td>
               <td>{{ formatarValorMonetario(despesa.valor) }}</td>
               <td>{{ formatarData(despesa.dataPagamento) }}</td>
               <td @click="counterStore.excluiDespesa">&times;</td>
