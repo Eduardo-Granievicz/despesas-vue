@@ -77,8 +77,6 @@ const cadastrarDespesa = (event) => {
     banco: banco.value
   });
 
-  console.log(banco.value)
-
   nomeDespesa.value = "";
   valorDespesa.value = "";
   dataPagamento.value = "";
