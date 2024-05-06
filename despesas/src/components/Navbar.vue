@@ -1,32 +1,32 @@
 <template>
-<div class="navbar">
-    <router-link class="active" to="/">Cadastrar despesa</router-link>
+  <div class="navbar">
+    <router-link class="active" to="/">Inicio</router-link>
+    <router-link class="active" to="/cadastro">Cadastrar despesa</router-link>
+    <router-link class="active" to="/cadastrar-cartao">Cadastrar cartão</router-link>
     <router-link to="/visualizar">Visualizar despesa</router-link>
-</div>
+  </div>
 </template>
 <script>
 </script>
 
 <style>
-        .navbar {
-            overflow: hidden;
-            background-color: #333;
-            font-family: Arial, sans-serif;
-        }
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial, sans-serif;
+}
 
-        .navbar a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-        }
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
 
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-
-    </style>
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+</style>
