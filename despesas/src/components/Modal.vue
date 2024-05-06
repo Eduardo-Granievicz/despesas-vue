@@ -27,6 +27,13 @@
           <option value="Saude">Saude</option>
           <option value="Lazer">Lazer</option>
           <option value="Dividas">Dividas</option>
+          <option value="Fatura">Fatura</option>
+        </select>
+
+        <label for="banco" class="form-label">Selecione o banco:</label>
+        <select id="banco" class="form-input" v-model="banco">
+          <option value="">Selecione</option>
+          <option v-for="cartoes in counterStore.cartoes" :key="cartoes.id" :value="cartoes.nome">{{ cartoes.nome }}</option>
         </select>
 
         <label for="dataPagamento" class="form-label">Data de pagamento:</label>
@@ -57,6 +64,7 @@ const nomeDespesa = ref("");
 const valorDespesa = ref("");
 const dataPagamento = ref("");
 const categoria = ref("");
+const banco = ref("")
 
 const cadastrarDespesa = (event) => {
   event.preventDefault();
@@ -66,12 +74,18 @@ const cadastrarDespesa = (event) => {
     valor: valorDespesa.value,
     dataPagamento: dataPagamento.value,
     categoria: categoria.value,
+    banco: banco.value
   });
+
+  console.log(banco.value)
 
   nomeDespesa.value = "";
   valorDespesa.value = "";
   dataPagamento.value = "";
   categoria.value = "";
+  banco.value = ""
+
+
 };
 </script>
 <style>
@@ -125,5 +139,12 @@ const cadastrarDespesa = (event) => {
 
 .form-submit:hover {
   background-color: #037f58;
+}
+
+.sucess {
+  margin: 7px;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
 }
 </style>
