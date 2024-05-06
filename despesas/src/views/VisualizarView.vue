@@ -1,19 +1,18 @@
 <template>
-    <div>
-        <ModalVisualizar/>
-    </div>
+  <div>
+    <ModalVisualizar />
+  </div>
 </template>
 
 <script>
-import ModalVisualizar from '../components/ModalVisualizar.vue';
+import ModalVisualizar from "../components/ModalVisualizar.vue";
 export default {
-  name: "CadastroView",
+  name: "VisualizarView",
   components: {
-    ModalVisualizar
+    ModalVisualizar,
   },
-  
-  setup() {
-  }
+
+  setup() {},
 };
 </script>
 
