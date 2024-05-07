@@ -28,7 +28,22 @@ export const useCounterStore = defineStore('counter', () => {
     }),
     quantidadeDespesas: computed(() => {
       return state.despesas.value.length;
-    })
+    }),
+    quantidadeDespesasPorCategoria: (categoria) => {
+      return state.despesas.value.filter(despesa => despesa.categoria === categoria).length;
+    },
+    totalDespesasPorCategoria(categoria) {
+      let total = 0;
+      state.despesas.value.forEach(despesa => {
+        if (despesa.categoria === categoria) {
+          total += despesa.valor;
+        }
+      });
+      return total;
+    },
+    quantidadeCartoesPorBanco: (nome) => {
+      return state.cartoes.value.filter(despesa => despesa.nome === nome).length;
+    },
   };
 
   return { ...state, ...actions, ...getters };
