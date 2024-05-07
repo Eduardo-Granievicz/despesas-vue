@@ -11,9 +11,12 @@ export const useCounterStore = defineStore('counter', () => {
     adicionarDespesa(novaDespesa) {
       state.despesas.value.push(novaDespesa);
     },
-    excluiDespesa() {
-      state.despesas.value.pop();
-    },
+    excluiDespesa(nome) {
+      const index = state.despesas.value.findIndex(despesa => despesa.nome === nome);
+      if (index !== -1) {
+        state.despesas.value.splice(index, 1);
+      }
+    },  
     cadastrarCartao(novoCartao) {
       state.cartoes.value.push(novoCartao)
     }
