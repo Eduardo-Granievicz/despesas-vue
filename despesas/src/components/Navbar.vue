@@ -4,6 +4,7 @@
     <router-link class="active" to="/cadastro">Cadastrar despesa</router-link>
     <router-link class="active" to="/cadastrar-cartao">Cadastrar cartão</router-link>
     <router-link to="/visualizar">Visualizar despesa</router-link>
+    <router-link class="active" to="/dashboard">Dashboard</router-link>
   </div>
 </template>
 <script>
