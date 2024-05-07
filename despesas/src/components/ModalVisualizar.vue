@@ -15,7 +15,7 @@
             <tr>
               <th>Nome da despesa</th>
               <th>Categoria</th>
-              <th>Banco</th>
+              <th>Cartão</th>
               <th>Valor da despesa</th>
               <th>Data de pagamento</th>
             </tr>
@@ -27,7 +27,7 @@
               <td>{{ despesa.banco }}</td>
               <td>{{ formatarValorMonetario(despesa.valor) }}</td>
               <td>{{ formatarData(despesa.dataPagamento) }}</td>
-              <td @click="counterStore.excluiDespesa">&times;</td>
+              <td @click="counterStore.excluiDespesa(despesa.nome)" style="cursor: pointer;">&times;</td>
             </tr>
           </tbody>
         </table>

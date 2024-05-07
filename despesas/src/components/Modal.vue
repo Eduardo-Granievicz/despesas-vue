@@ -30,10 +30,11 @@
           <option value="Fatura">Fatura</option>
         </select>
 
-        <label for="banco" class="form-label">Selecione o banco:</label>
-        <select id="banco" class="form-input" v-model="banco">
+        <label for="banco" class="form-label">Selecione o cartão de seu respectivo banco:</label>
+        <select id="banco" class="form-input" v-model="banco" :disabled="!counterStore.cartoes.length">
+          <option v-if="!counterStore.cartoes.length" value="">Nenhum cartão cadastrado</option>
           <option value="">Selecione</option>
-          <option v-for="cartoes in counterStore.cartoes" :key="cartoes.id" :value="cartoes.nome">{{ cartoes.nome }}</option>
+          <option v-for="cartoes in counterStore.cartoes" :key="cartoes.id" :value="`${cartoes.nome} - ${cartoes.cartao}`">{{ cartoes.nome }}</option>
         </select>
 
         <label for="dataPagamento" class="form-label">Data de pagamento:</label>
@@ -74,7 +75,7 @@ const cadastrarDespesa = (event) => {
     valor: valorDespesa.value,
     dataPagamento: dataPagamento.value,
     categoria: categoria.value,
-    banco: banco.value
+    banco: banco.value = banco.value !== '' ? banco.value : 'Sem cartão cadastrado'
   });
 
   nomeDespesa.value = "";
