@@ -2,6 +2,7 @@ import CadastroView from '@/views/CadastroView.vue'
 import VisualizarView from '@/views/VisualizarView.vue'
 import IndexView from '@/views/IndexView.vue'
 import CadastroCartaoView from '@/views/CadastroCartaoView.vue'
+import DashboardView from '@/views/DashboardView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/cadastrar-cartao',
       name: 'Cartao',
       component: CadastroCartaoView
+    },
+    {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: DashboardView
     }
   ]
 })
