@@ -1,26 +1,33 @@
 <template>
   <div>
     <div class="todo">
-      <div class="modal-header">
-        <h3 v-if="!counterStore.despesas.length" class="title">
+      <div v-if="!counterStore.despesas.length" class="modal-header">
+        <h3 class="title">
           Favor cadastrar uma despesa!
         </h3>
       </div>
       <div class="pie" v-if="counterStore.despesas.length">
-        <span class="title_pie">Quantidade de despesas por categoria:</span>
-        <GraficoPie :labels="labels" :series="series" />
+        <GraficoPie
+          :titleChart="'Quantidade de despesas por categoria:'"
+          :labels="labels"
+          :series="series"
+        />
+      </div>
+
+      <div class="pie" v-if="counterStore.cartoes.length">
+        <GraficoPie
+          :titleChart="'Quantidade de cartões cadastrados por banco:'"
+          :labels="labelsCartao"
+          :series="porBanco"
+        />
       </div>
 
       <div class="pie" v-if="counterStore.despesas.length">
-        <span class="title_pie"
-          >Quantidade de cartões cadastrados por banco:</span
-        >
-        <GraficoPie :labels="labelsCartao" :series="porBanco" />
-      </div>
-
-      <div class="pie" v-if="counterStore.despesas.length">
-        <span class="title_pie">Valores gastos por categoria:</span>
-        <GraficoPie :labels="labels" :series="porCategoria" />
+        <GraficoPie
+          :titleChart="'Valores gastos por categoria:'"
+          :labels="labels"
+          :series="porCategoria"
+        />
       </div>
     </div>
   </div>
@@ -90,15 +97,11 @@ export default {
   margin-top: 50px;
 }
 
-.title_pie {
-  display: flex;
-  justify-content: center;
-  font-size: large;
-  margin-right: 80px;
-  margin-bottom: 20px;
-}
-
 .pie {
   width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
 }
 </style>
