@@ -15,8 +15,19 @@
           :labels="labels"
           :series="series"
         />
+        <GraficoPie
+          :titleChart="'Quantidade de despesas por categoria:'"
+          :labels="labels"
+          :series="series"
+        />
       </div>
 
+      <div class="pie" v-if="counterStore.cartoes.length">
+        <GraficoPie
+          :titleChart="'Quantidade de cartões cadastrados por banco:'"
+          :labels="labelsCartao"
+          :series="porBanco"
+        />
       <div class="pie" v-if="counterStore.cartoes.length">
         <GraficoPie
           :titleChart="'Quantidade de cartões cadastrados por banco:'"
@@ -26,6 +37,11 @@
       </div>
 
       <div class="pie" v-if="counterStore.despesas.length">
+        <GraficoPie
+          :titleChart="'Valores gastos por categoria:'"
+          :labels="labels"
+          :series="porCategoria"
+        />
         <GraficoPie
           :titleChart="'Valores gastos por categoria:'"
           :labels="labels"
