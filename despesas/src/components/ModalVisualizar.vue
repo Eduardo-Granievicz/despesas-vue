@@ -22,6 +22,9 @@
               <th class="columnView" @click="organizar('Valor')">
                 Valor da despesa
               </th>
+              <th class="columnView" @click="organizar('Vencimento')">
+                Data de vencimento fatura
+              </th>
               <th class="columnView" @click="organizar('Data')">
                 Data de pagamento
               </th>
@@ -33,6 +36,7 @@
               <td>{{ despesa.categoria }}</td>
               <td>{{ despesa.banco }}</td>
               <td>{{ formatarValorMonetario(despesa.valor) }}</td>
+              <td>{{ despesa.dataVencimento }}</td>
               <td>{{ formatarData(despesa.dataPagamento) }}</td>
               <td
                 @click="counterStore.excluiDespesa(despesa.nome)"
@@ -94,6 +98,11 @@ export default {
         case "Valor":
           counterStore.despesas.sort((a, b) => a.valor - b.valor);
           break;
+        case "Vencimento":
+          counterStore.despesas.sort((a, b) =>
+            a.dataVencimento.localeCompare(b.dataVencimento)
+          );
+          break;
         case "Data":
           counterStore.despesas.sort((a, b) =>
             a.dataPagamento.localeCompare(b.dataPagamento)
@@ -125,7 +134,7 @@ export default {
 
 .modal-content {
   width: 80%;
-  max-width: 800px;
+  max-width: 1000px;
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
