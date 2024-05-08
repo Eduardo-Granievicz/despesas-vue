@@ -1,13 +1,17 @@
 <template>
   <div>
-    <div v-if="counterStore.despesas.length || counterStore.cartoes.length" class="title_screen">
-        Dashboard
-      </div>
+    <div
+      v-if="counterStore.despesas.length || counterStore.cartoes.length"
+      class="title_screen"
+    >
+      Dashboard
+    </div>
     <div class="todo">
-      <div v-if="!counterStore.despesas.length && !counterStore.cartoes.length" class="modal-header">
-        <h3 class="title">
-          Favor cadastrar uma despesa e/ou cartão!
-        </h3>
+      <div
+        v-if="!counterStore.despesas.length && !counterStore.cartoes.length"
+        class="modal-header"
+      >
+        <h3 class="title">Favor cadastrar uma despesa e/ou cartão!</h3>
       </div>
       <div class="pie" v-if="counterStore.despesas.length">
         <GraficoPie
@@ -28,25 +32,26 @@
           :labels="labelsCartao"
           :series="porBanco"
         />
-      <div class="pie" v-if="counterStore.cartoes.length">
-        <GraficoPie
-          :titleChart="'Quantidade de cartões cadastrados por banco:'"
-          :labels="labelsCartao"
-          :series="porBanco"
-        />
-      </div>
+        <div class="pie" v-if="counterStore.cartoes.length">
+          <GraficoPie
+            :titleChart="'Quantidade de cartões cadastrados por banco:'"
+            :labels="labelsCartao"
+            :series="porBanco"
+          />
+        </div>
 
-      <div class="pie" v-if="counterStore.despesas.length">
-        <GraficoPie
-          :titleChart="'Valores gastos por categoria:'"
-          :labels="labels"
-          :series="porCategoria"
-        />
-        <GraficoPie
-          :titleChart="'Valores gastos por categoria:'"
-          :labels="labels"
-          :series="porCategoria"
-        />
+        <div class="pie" v-if="counterStore.despesas.length">
+          <GraficoPie
+            :titleChart="'Valores gastos por categoria:'"
+            :labels="labels"
+            :series="porCategoria"
+          />
+          <GraficoPie
+            :titleChart="'Valores gastos por categoria:'"
+            :labels="labels"
+            :series="porCategoria"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -125,9 +130,9 @@ export default {
 }
 
 .title_screen {
-display: flex;
-justify-content: center;
-font-size: xx-large;
-margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+  margin-top: 20px;
 }
 </style>
