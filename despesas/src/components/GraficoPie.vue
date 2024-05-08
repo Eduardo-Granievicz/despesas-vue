@@ -1,5 +1,8 @@
 <template>
     <div>
+      <div>
+        <span class="title_pie">{{ titleChart }}</span>
+      </div>
       <apexchart type="pie" :options="chartOptions" :series="series" :labels="labels"></apexchart>
     </div>
   </template>
@@ -14,7 +17,12 @@
         type: Array,
         required: false
       },
-      series: Array, 
+      series: {
+        type: Array, 
+      },
+      titleChart: {
+        type: String
+      }
     },
     components: {
       apexchart: VueApexCharts
@@ -34,4 +42,15 @@
     }
   };
   </script>
+
+  <style>
+.title_pie {
+  display: flex;
+  justify-content: center;
+  font-size: large;
+  margin-right: 80px;
+  margin-bottom: 20px;
+}
+
+</style>
   
