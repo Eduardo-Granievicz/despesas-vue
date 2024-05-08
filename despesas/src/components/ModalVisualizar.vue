@@ -7,17 +7,24 @@
           <h3 v-if="!counterStore.despesas.length" class="title">
             Favor cadastrar uma despesa!
           </h3>
-
         </div>
 
         <table v-if="counterStore.despesas.length" class="modal-table">
           <thead>
             <tr>
-              <th>Nome da despesa</th>
-              <th>Categoria</th>
-              <th>Cartão</th>
-              <th>Valor da despesa</th>
-              <th>Data de pagamento</th>
+              <th class="columnView" @click="organizar('Nome')">
+                Nome da despesa
+              </th>
+              <th class="columnView" @click="organizar('Categoria')">
+                Categoria
+              </th>
+              <th class="columnView" @click="organizar('Cartao')">Cartão</th>
+              <th class="columnView" @click="organizar('Valor')">
+                Valor da despesa
+              </th>
+              <th class="columnView" @click="organizar('Data')">
+                Data de pagamento
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -27,11 +34,16 @@
               <td>{{ despesa.banco }}</td>
               <td>{{ formatarValorMonetario(despesa.valor) }}</td>
               <td>{{ formatarData(despesa.dataPagamento) }}</td>
-              <td @click="counterStore.excluiDespesa(despesa.nome)" style="cursor: pointer;">&times;</td>
+              <td
+                @click="counterStore.excluiDespesa(despesa.nome)"
+                style="cursor: pointer"
+              >
+                &times;
+              </td>
             </tr>
           </tbody>
         </table>
-        
+
         <div class="modal-footer" v-if="counterStore.despesas.length">
           <div>
             Quantidade de despesa: {{ counterStore.quantidadeDespesas }}
@@ -40,10 +52,6 @@
             Valor total da despesa:
             {{ formatarValorMonetario(counterStore.totalDespesas) }}
           </div>
-
-          <button @click="organizarCategoria()" class="bt-category">
-          Filtrar por Categoria
-        </button>
         </div>
       </div>
     </div>
@@ -70,17 +78,34 @@ export default {
       });
     };
 
-    const organizarCategoria = () => {
-      counterStore.despesas.sort((a, b) =>
-        a.categoria.localeCompare(b.categoria)
-      );
+    const organizar = (parametro) => {
+      switch (parametro) {
+        case "Nome":
+          counterStore.despesas.sort((a, b) => a.nome.localeCompare(b.nome));
+          break;
+        case "Categoria":
+          counterStore.despesas.sort((a, b) =>
+            a.categoria.localeCompare(b.categoria)
+          );
+          break;
+        case "Cartao":
+          counterStore.despesas.sort((a, b) => a.banco.localeCompare(b.banco));
+          break;
+        case "Valor":
+          counterStore.despesas.sort((a, b) => a.valor - b.valor);
+          break;
+        case "Data":
+          counterStore.despesas.sort((a, b) =>
+            a.dataPagamento.localeCompare(b.dataPagamento)
+          );
+      }
     };
 
     return {
       counterStore,
       formatarData,
       formatarValorMonetario,
-      organizarCategoria,
+      organizar,
     };
   },
 };
@@ -140,17 +165,11 @@ export default {
   justify-content: center;
 }
 
-.bt-category {
-  width: 30%;
-  margin: 5px;
-  padding: 5px;
-  border-radius: 4px;
-  background-color: #04aa6d;
-  color: white;
+.columnView {
   cursor: pointer;
 }
 
-.bt-category:hover {
-  background-color: #037f58;
+.columnView:hover {
+  background-color: #eee;
 }
 </style>
