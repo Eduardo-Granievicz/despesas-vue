@@ -14,7 +14,8 @@
         o total do valor de todas as despesas cadastradas.<br> -> Contagem das
         despesas em aberto: Os usuários podem ver quantas despesas estão em
         aberto no momento.<br> -> Exclusão de despesas: Os usuários têm a opção de
-        excluir despesas individualmente, caso não sejam mais necessárias.<br> -> Cadastro de cartões para controle de faturas<br> <br>
+        excluir despesas individualmente, caso não sejam mais necessárias.<br> -> Cadastro de cartões para controle de faturas<br>
+        -> Dashboard com métricas para um controle mais preciso de suas despesas <br> <br>
         Para mais informações acesse: <a href="https://github.com/Eduardo-Granievicz/despesas-vue">https://github.com/Eduardo-Granievicz/despesas-vue</a>
       </h3>
       </div>
