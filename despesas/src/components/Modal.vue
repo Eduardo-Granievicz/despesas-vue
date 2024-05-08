@@ -52,6 +52,29 @@
           </option>
         </select>
 
+        <label for="dtVencimento" class="form-label"
+          >Selecione a data de vencimento da fatura:</label
+        >
+
+        <select
+          id="dtVencimento"
+          class="form-input"
+          v-model="dataVencimento"
+          :disabled="!counterStore.cartoes.length"
+        >
+          <option v-if="!counterStore.cartoes.length" value="">
+            Nenhum cartão cadastrado
+          </option>
+          <option value="">Selecione</option>
+          <option
+            v-for="cartoes in counterStore.cartoes"
+            :key="cartoes.id"
+            :value="formatarData(cartoes.dataVencimento)"
+          >
+            {{ formatarData(cartoes.dataVencimento) }}
+          </option>
+        </select>
+
         <label for="dataPagamento" class="form-label">Data de pagamento:</label>
         <input
           type="date"
@@ -81,6 +104,12 @@ const valorDespesa = ref("");
 const dataPagamento = ref("");
 const categoria = ref("");
 const banco = ref("");
+const dataVencimento = ref("");
+
+const formatarData = (data) => {
+  const opcoes = { year: "numeric", month: "long", day: "numeric" };
+  return new Date(data).toLocaleDateString("pt-BR", opcoes);
+};
 
 const cadastrarDespesa = (event) => {
   event.preventDefault();
@@ -92,6 +121,10 @@ const cadastrarDespesa = (event) => {
     categoria: categoria.value,
     banco: (banco.value =
       banco.value !== "" ? banco.value : "Sem cartão cadastrado"),
+    dataVencimento: (dataVencimento.value =
+      dataVencimento.value !== ""
+        ? dataVencimento.value
+        : "Sem cartão cadastrado"),
   });
 
   nomeDespesa.value = "";
@@ -99,6 +132,7 @@ const cadastrarDespesa = (event) => {
   dataPagamento.value = "";
   categoria.value = "";
   banco.value = "";
+  dataVencimento.value = "";
 };
 </script>
 <style>
