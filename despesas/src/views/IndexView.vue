@@ -4,7 +4,7 @@
       <div class="text">
         <h3>
         <strong>Gerenciador de Despesas</strong><br> Descrição: O Gerenciador de Despesas é um
-        aplicativo web desenvolvido em Vue 3, HTML e CSS puro, com o Pinia para
+        aplicativo web desenvolvido em Vue 3, HTML e CSS, com o Pinia para
         gerenciamento de estado.<br> Ele permite que os usuários cadastrem suas
         despesas, visualizem o total do valor das despesas, saibam quantas
         despesas estão em aberto e excluam despesas conforme necessário. <br>
