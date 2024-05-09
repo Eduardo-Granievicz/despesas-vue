@@ -48,7 +48,6 @@
   display: flex;
   justify-content: center;
   font-size: large;
-  margin-right: 80px;
   margin-bottom: 20px;
 }
 
