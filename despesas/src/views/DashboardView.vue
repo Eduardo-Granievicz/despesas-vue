@@ -1,12 +1,32 @@
 <template>
-  <div>
-    <div
-      v-if="counterStore.despesas.length || counterStore.cartoes.length"
-      class="title_screen"
-    >
-      Dashboard
+    <h3 class="title_cards" v-if="counterStore.despesas.length || counterStore.cartoes.length">Meus cartões</h3>
+  <div  >
+    <div class="cards">
+      <div class="credit-card" v-for="cartoes in counterStore.cartoes" :key="cartoes.id" :class="{'credit-card': true, 'tipo-itau': cartoes.nome === 'Itau', 'credit-card': true, 'tipo-nubank': cartoes.nome === 'Nubank', 'credit-card': true, 'tipo-bradesco': cartoes.nome === 'Bradesco', 'credit-card': true, 'tipo-santander': cartoes.nome === 'Santander', 'credit-card': true, 'tipo-inter': cartoes.nome === 'Inter'}">
+        <div class="card-number">{{ cartoes.numeroCartao }}</div>
+        <div class="card-details">
+          <div class="card-holder">
+            Nome do Titular: <br />
+            {{ cartoes.nomeTitular }}
+          </div>
+          <div class="card-expiry">
+            MM/AA <br />
+            {{ cartoes.validade }}
+          </div>
+        </div>
+        <div class="type-card">
+          {{ cartoes.cartao }}
+        </div>
+      </div>
     </div>
-    <div class="todo">
+    </div>
+  <div
+    v-if="counterStore.despesas.length || counterStore.cartoes.length"
+    class="title_screen"
+  >
+    Dashboard
+  </div>
+  <div class="content-overlay">
       <div
         v-if="!counterStore.despesas.length && !counterStore.cartoes.length"
         class="modal-header"
@@ -36,7 +56,6 @@
           :series="porCategoria"
         />
       </div>
-    </div>
   </div>
 </template>
   
@@ -98,11 +117,7 @@ export default {
 </script>
 
   <style>
-.todo {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 50px;
-}
+
 
 .pie {
   width: 500px;
@@ -115,7 +130,83 @@ export default {
 .title_screen {
   display: flex;
   justify-content: center;
-  font-size: xx-large;
+  font-size: x-large;
   margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.content-overlay {
+  display: flex;
+  align-items: center;
+  justify-content:space-around
+}
+
+.credit-card {
+  width: 300px;
+  height: 200px;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  margin-left: 30px;
+  color: white;
+}
+
+.card-number {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.card-details {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.card-holder,
+.card-expiry {
+  font-size: 14px;
+  color: white;
+}
+
+.type-card {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.title_cards {
+  margin-top: 10px;
+  font-size:x-large;
+  display: flex;
+  justify-content: center;
+}
+
+.tipo-itau {
+  background-color: rgb(255, 102, 0, 0.7);
+}
+
+.tipo-nubank {
+  background-color: rgb(138, 5, 190, 0.7);
+}
+
+.tipo-bradesco {
+  background-color: rgba(165, 0, 0, 0.7);
+}
+
+.tipo-santander {
+  background-color: rgb(255, 0, 0, 0.7);
+}
+
+.tipo-inter {
+  background-color: rgb(255, 215, 0, 0.7);
 }
 </style>
