@@ -19,6 +19,12 @@ export const useCounterStore = defineStore('counter', () => {
     },  
     cadastrarCartao(novoCartao) {
       state.cartoes.value.push(novoCartao)
+    },
+    excluirCartao(nome) {
+      const index = state.cartoes.value.findIndex(cartao => cartao.nome === nome)
+      if (index !== -1) {
+        state.cartoes.value.splice(index, 1)
+      }
     }
   };
 

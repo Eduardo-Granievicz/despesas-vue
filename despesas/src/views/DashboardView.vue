@@ -1,9 +1,9 @@
 <template>
-    <h3 class="title_cards" v-if="counterStore.despesas.length || counterStore.cartoes.length">Meus cartões</h3>
+    <h3 class="title_cards" v-if="counterStore.cartoes.length">Meus cartões</h3>
   <div  >
     <div class="cards">
       <div class="credit-card" v-for="cartoes in counterStore.cartoes" :key="cartoes.id" :class="{'credit-card': true, 'tipo-itau': cartoes.nome === 'Itau', 'credit-card': true, 'tipo-nubank': cartoes.nome === 'Nubank', 'credit-card': true, 'tipo-bradesco': cartoes.nome === 'Bradesco', 'credit-card': true, 'tipo-santander': cartoes.nome === 'Santander', 'credit-card': true, 'tipo-inter': cartoes.nome === 'Inter'}">
-        <div class="card-number">{{ cartoes.numeroCartao }}</div>
+        <div class="card-number">{{ cartoes.numeroCartao }}</div> 
         <div class="card-details">
           <div class="card-holder">
             Nome do Titular: <br />
@@ -16,6 +16,7 @@
         </div>
         <div class="type-card">
           {{ cartoes.cartao }}
+          {{ cartoes.nome }}
         </div>
       </div>
     </div>
@@ -142,7 +143,7 @@ export default {
 }
 
 .credit-card {
-  width: 300px;
+  width: 320px;
   height: 200px;
   background-color: #f3f3f3;
   border-radius: 10px;
@@ -151,12 +152,14 @@ export default {
   margin-top: 30px;
   margin-left: 30px;
   color: white;
+  font-weight: bolder;
 }
 
 .card-number {
   font-size: 24px;
   margin-bottom: 20px;
   color: white;
+  display: flex;  
 }
 
 .card-details {
@@ -207,6 +210,6 @@ export default {
 }
 
 .tipo-inter {
-  background-color: rgb(255, 215, 0, 0.7);
+  background-color: rgba(214, 90, 7);
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="modal-overlay">
+    <div class="modal-overlay-cards">
       <div class="form-container">
         <form @submit="cadastrarCartao">
           <label for="nomeTitular" class="form-label">Nome do titular:</label>
@@ -57,7 +57,6 @@
             maxlength="5"
             placeholder="MM/AA"
           />
-          <div v-if="erro" style="color: red">{{ erro }}</div>
 
           <label for="dataVencimento" class="form-label"
             >Data de vencimento fatura:</label
@@ -74,6 +73,46 @@
             Cadastrar cartão
           </button>
         </form>
+      </div>
+
+      <div v-if="counterStore.cartoes.length" class="modal-cards">
+        <div class="modal-header">
+          <h3>Cartões cadastrados</h3>
+        </div>
+        <table  class="modal-table">
+          <thead>
+            <tr>
+              <th class="columnView" @click="organizar('Nome')">
+                Nome titular
+              </th>
+              <th class="columnView" @click="organizar('Categoria')">Banco</th>
+              <th class="columnView" @click="organizar('Cartao')">
+                Tipo cartão
+              </th>
+              <th class="columnView" @click="organizar('Valor')">
+                Número do cartão
+              </th>
+              <th class="columnView" @click="organizar('Vencimento')">
+                Data de vencimento
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="cartoes in counterStore.cartoes" :key="cartoes.id">
+              <td>{{ cartoes.nomeTitular }}</td>
+              <td>{{ cartoes.nome }}</td>
+              <td>{{ cartoes.cartao }}</td>
+              <td>{{ cartoes.numeroCartao }}</td>
+              <td>{{ formatarData(cartoes.dataVencimento) }}</td>
+              <td
+                @click="counterStore.excluirCartao(cartoes.nome)"
+                style="cursor: pointer"
+              >
+                &times;
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -111,6 +150,11 @@ const cadastrarCartao = (event) => {
   numeroCartao.value = "";
 };
 
+const formatarData = (data) => {
+      const opcoes = { year: "numeric", month: "long", day: "numeric" };
+      return new Date(data).toLocaleDateString("pt-BR", opcoes);
+    };
+
 const formatarNumeroCartao = (event) => {
   let numero = event.target.value.replace(/\D/g, "");
   numero = numero.slice(0, 16);
@@ -121,4 +165,23 @@ const formatarNumeroCartao = (event) => {
 
 <style>
 
+.modal-cards {
+  width: 60%;
+  max-width: 1000px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  margin-right: 100px;
+}
+
+.modal-overlay-cards {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>
