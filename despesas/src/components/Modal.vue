@@ -4,11 +4,13 @@
       <form @submit="cadastrarDespesa">
         <label for="nomeDespesa" class="form-label">Nome da despesa:</label>
         <input
+          @click="resetCadastrado"
           type="text"
           id="nomeDespesa"
           class="form-input"
           v-model="nomeDespesa"
           required
+          placeholder="Nome da despesa"
         />
 
         <label for="valorDespesa" class="form-label">Valor da despesa:</label>
@@ -17,6 +19,7 @@
           id="valorDespesa"
           class="form-input"
           v-model="valorDespesa"
+          placeholder="Valor despesa"
           required
         />
 
@@ -84,6 +87,8 @@
           required
         />
 
+        <span v-if="cadastrado" class="sucess">Cadastrado com sucesso! 🏆</span>
+
         <button type="submit" value="" class="form-submit">
           Cadastrar despesa
         </button>
@@ -105,11 +110,16 @@ const dataPagamento = ref("");
 const categoria = ref("");
 const banco = ref("");
 const dataVencimento = ref("");
+const cadastrado = ref(false)
 
 const formatarData = (data) => {
   const opcoes = { year: "numeric", month: "long", day: "numeric" };
   return new Date(data).toLocaleDateString("pt-BR", opcoes);
 };
+
+const resetCadastrado = () => {
+      cadastrado.value = false;
+    };
 
 const cadastrarDespesa = (event) => {
   event.preventDefault();
@@ -126,6 +136,8 @@ const cadastrarDespesa = (event) => {
         ? dataVencimento.value
         : "Sem cartão cadastrado"),
   });
+
+  cadastrado.value = true
 
   nomeDespesa.value = "";
   valorDespesa.value = "";
@@ -189,9 +201,8 @@ const cadastrarDespesa = (event) => {
 }
 
 .sucess {
-  margin: 7px;
-  display: flex;
-  justify-content: center;
+  margin-left: 10px;
+  margin-left: 27%;
   font-weight: bold;
 }
 </style>

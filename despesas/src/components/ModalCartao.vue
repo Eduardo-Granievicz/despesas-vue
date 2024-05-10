@@ -1,15 +1,16 @@
 <template>
-  <div>
     <div class="modal-overlay-cards">
-      <div class="form-container">
+      <div class="form-container-card">
         <form @submit="cadastrarCartao">
           <label for="nomeTitular" class="form-label">Nome do titular:</label>
           <input
+            @click="resetCadastrado"
             type="text"
             id="nomeTitular"
             class="form-input"
             v-model="nomeTitular"
             required
+            placeholder="Nome do titular"
           />
 
           <label for="nomeBanco" class="form-label">Banco:</label>
@@ -42,6 +43,7 @@
             v-model="numeroCartao"
             required
             @input="formatarNumeroCartao"
+            placeholder="0000 0000 0000 0000"
           />
 
           <label for="validade" class="form-label"
@@ -69,6 +71,10 @@
             required
           />
 
+          <span v-if="cadastrado" class="sucess"
+            >Cadastrado com sucesso! 🏆</span
+          >
+
           <button type="submit" value="" class="form-submit">
             Cadastrar cartão
           </button>
@@ -79,7 +85,7 @@
         <div class="modal-header">
           <h3>Cartões cadastrados</h3>
         </div>
-        <table  class="modal-table">
+        <table class="modal-table">
           <thead>
             <tr>
               <th class="columnView" @click="organizar('Nome')">
@@ -115,7 +121,6 @@
         </table>
       </div>
     </div>
-  </div>
 </template>
 
 <script setup>
@@ -129,6 +134,11 @@ const numeroCartao = ref("");
 const nomeBanco = ref("");
 const cartao = ref("");
 const dataVencimento = ref("");
+const cadastrado = ref(false);
+
+const resetCadastrado = () => {
+  cadastrado.value = false;
+};
 
 const cadastrarCartao = (event) => {
   event.preventDefault();
@@ -142,6 +152,8 @@ const cadastrarCartao = (event) => {
     numeroCartao: numeroCartao.value,
   });
 
+  cadastrado.value = true;
+
   nomeBanco.value = "";
   cartao.value = "";
   dataVencimento.value = "";
@@ -151,9 +163,9 @@ const cadastrarCartao = (event) => {
 };
 
 const formatarData = (data) => {
-      const opcoes = { year: "numeric", month: "long", day: "numeric" };
-      return new Date(data).toLocaleDateString("pt-BR", opcoes);
-    };
+  const opcoes = { year: "numeric", month: "long", day: "numeric" };
+  return new Date(data).toLocaleDateString("pt-BR", opcoes);
+};
 
 const formatarNumeroCartao = (event) => {
   let numero = event.target.value.replace(/\D/g, "");
@@ -164,7 +176,6 @@ const formatarNumeroCartao = (event) => {
 </script>
 
 <style>
-
 .modal-cards {
   width: 60%;
   max-width: 1000px;
@@ -183,5 +194,14 @@ const formatarNumeroCartao = (event) => {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.form-container-card {
+  width: 490px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 </style>
