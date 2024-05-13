@@ -2,8 +2,8 @@
   <div class="navbar">
     <router-link class="active" to="/">Inicio</router-link>
     <router-link class="active" to="/cadastro">Cadastrar despesa</router-link>
-    <router-link class="active" to="/cadastrar-cartao">Cadastrar cartão</router-link>
-    <router-link to="/visualizar">Visualizar despesa</router-link>
+    <router-link class="active" to="/cadastrar-cartao">Meus cartões</router-link>
+    <router-link to="/visualizar">Visualizar despesas</router-link>
     <router-link class="active" to="/dashboard">Dashboard</router-link>
   </div>
 </template>

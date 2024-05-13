@@ -88,17 +88,17 @@
         <table class="modal-table">
           <thead>
             <tr>
-              <th class="columnView" @click="organizar('Nome')">
+              <th>
                 Nome titular
               </th>
-              <th class="columnView" @click="organizar('Categoria')">Banco</th>
-              <th class="columnView" @click="organizar('Cartao')">
+              <th>Banco</th>
+              <th>
                 Tipo cartão
               </th>
-              <th class="columnView" @click="organizar('Valor')">
+              <th>
                 Número do cartão
               </th>
-              <th class="columnView" @click="organizar('Vencimento')">
+              <th>
                 Data de vencimento
               </th>
             </tr>
